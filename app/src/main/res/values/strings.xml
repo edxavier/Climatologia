@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name">Climatologia del Cafe</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Preferencias</string>
+
+    <!-- Login Screen -->
+    <string name="login_title">Inicio de Sesion</string>
+    <string name="login_username">Usuario</string>
+    <string name="login_button">Entrar</string>
+    <string name="login_password">Contraseña</string>
+    <string name="login_subtitle">Asociacion de Cooperativas de Pequeños Productores de Cafe de Nicaragua</string>
+
+<!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="internacionales">Hello International fragment</string>
+    <string name="nacionales">Hello National fragment</string>
+    <string name="title_activity_login">Inicio de Sesion</string>
+</resources>
