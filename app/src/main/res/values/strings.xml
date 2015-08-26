@@ -4,9 +4,9 @@
     <string name="action_settings">Preferencias</string>
 
     <!-- Login Screen -->
-    <string name="login_title">Inicio de Sesion</string>
+    <string name="login_title">CAFENICA</string>
     <string name="login_username">Usuario</string>
-    <string name="login_button">Entrar</string>
+    <string name="login_button">Autenticar</string>
     <string name="login_password">Contraseña</string>
     <string name="login_subtitle">Asociacion de Cooperativas de Pequeños Productores de Cafe de Nicaragua</string>
 

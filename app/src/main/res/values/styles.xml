@@ -29,4 +29,18 @@
         <item name="textAppearanceListItem">@style/TextAppearance.AppCompat.Body2</item>
     </style>
 
+    <style name="Button.Tinted" parent="Widget.AppCompat.Button">
+        <item name="colorButtonNormal">@color/md_light_blue_500</item>
+        <item name="colorControlHighlight">#009990</item>
+        <item name="android:textColor">@android:color/white</item>
+    </style>
+
+    <style name="Button.Red" parent="Widget.AppCompat.Button">
+        <item name="colorButtonNormal">@color/md_red_500</item>
+        <item name="colorControlHighlight">@color/md_red_200</item>
+        <item name="android:textColor">@android:color/white</item>
+    </style>
+
+
+
 </resources>
