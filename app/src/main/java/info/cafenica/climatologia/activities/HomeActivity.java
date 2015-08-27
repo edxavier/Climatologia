@@ -1,12 +1,16 @@
 package info.cafenica.climatologia.activities;
 
 import android.content.Intent;
+import android.support.design.widget.CollapsingToolbarLayout;
+import android.support.design.widget.CoordinatorLayout;
+import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
+import android.support.v4.widget.NestedScrollView;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -14,15 +18,17 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.FrameLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import info.cafenica.climatologia.R;
 import db.models.Usuario;
 
-public class HomeActivity extends AppCompatActivity {
+public class HomeActivity extends AppCompatActivity implements View.OnClickListener {
     Usuario usuario = null;
     DrawerLayout drawerLayout;
+    CollapsingToolbarLayout collapsingToolbarLayout;
     Toolbar toolbar;
     ActionBar actionBar;
     TextView textView;
@@ -54,8 +60,13 @@ public class HomeActivity extends AppCompatActivity {
         if (navigationView != null) {
             setupNavigationDrawerContent(navigationView);
         }
+        collapsingToolbarLayout = (CollapsingToolbarLayout) findViewById(R.id.collap);
+        collapsingToolbarLayout.setTitle("Climatologia");
 
-        setupNavigationDrawerContent(navigationView);
+        FloatingActionButton fabBtn = (FloatingActionButton) findViewById(R.id.fabBtn_nuevo);
+        fabBtn.setOnClickListener(this);
+
+        //setupNavigationDrawerContent(navigationView);
 
     }
 
@@ -101,7 +112,14 @@ public class HomeActivity extends AppCompatActivity {
                                 menuItem.setChecked(true);
                                 textView.setText(menuItem.getTitle());
                                 drawerLayout.closeDrawer(GravityCompat.START);
+                                CoordinatorLayout content = (CoordinatorLayout) findViewById(R.id.contentLayout);
+                                Snackbar.make(content, menuItem.getTitle(), Snackbar.LENGTH_INDEFINITE)
+                                .setAction("Volver", new View.OnClickListener() {
+                                @Override
+                                public void onClick(View v) {
 
+                                }
+                                }).show();
                                 //fragment = new FragmentNacionales();
                                 break;
                             case R.id.item_navigation_drawer_sent_mail:
@@ -140,4 +158,10 @@ public class HomeActivity extends AppCompatActivity {
     }
 
 
+    @Override
+    public void onClick(View v) {
+        Toast.makeText(v.getContext(), "Nuevo Registro", Toast.LENGTH_SHORT).show();
+        Intent intent = new Intent(HomeActivity.this, Registro.class);
+        startActivity(intent);
+    }
 }

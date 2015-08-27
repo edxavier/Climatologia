@@ -19,6 +19,8 @@ public class DbOpenHelper extends SQLiteOpenHelper {
     public void onCreate(SQLiteDatabase db) {
         String sql = "create table usuario ( _id int primary key, user text, password text)";
         db.execSQL(sql);
+        //sql = "create table clima ( _id int primary key, user text, password text)";
+        //db.execSQL(sql);
     }
 
     @Override

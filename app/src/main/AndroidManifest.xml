@@ -18,8 +18,13 @@
         </activity>
         <activity
             android:name=".activities.LoginActivity"
+            android:excludeFromRecents="true"
             android:label="@string/title_activity_login"
-            android:noHistory="true" android:excludeFromRecents="true">
+            android:noHistory="true" >
+        </activity>
+        <activity
+            android:name=".activities.Registro"
+            android:label="@string/title_activity_registro" >
         </activity>
     </application>
 
