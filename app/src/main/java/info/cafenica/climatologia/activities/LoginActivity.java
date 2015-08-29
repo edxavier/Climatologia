@@ -1,6 +1,5 @@
 package info.cafenica.climatologia.activities;
 
-import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -18,7 +17,7 @@ import android.support.design.widget.TextInputLayout;
 
 
 import info.cafenica.climatologia.R;
-import db.models.Usuario;
+import info.cafenica.climatologia.db.models.Usuario;
 
 
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener {

@@ -9,6 +9,11 @@ import android.util.Log;
 import android.util.TypedValue;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
+
+import com.prolificinteractive.materialcalendarview.MaterialCalendarView;
+
+import java.util.Date;
 
 import info.cafenica.climatologia.R;
 
@@ -26,6 +31,10 @@ public class Registro extends AppCompatActivity {
         TypedValue typedValueColorPrimaryDark = new TypedValue();
         Registro.this.getTheme().resolveAttribute(R.attr.colorPrimaryDark, typedValueColorPrimaryDark, true);
         final int colorPrimaryDark = typedValueColorPrimaryDark.data;
+
+        MaterialCalendarView calendarView = (MaterialCalendarView) findViewById(R.id.calendarView);
+        calendarView.setSelectedDate(new Date());
+
         if (Build.VERSION.SDK_INT >= 21) {
             getWindow().setStatusBarColor(colorPrimaryDark);
         }
@@ -47,7 +56,8 @@ public class Registro extends AppCompatActivity {
         Log.d("REG", String.valueOf(android.R.id.home));
 
         switch (id){
-            case R.id.action_settings:
+            case R.id.ac_save:
+                Toast.makeText(this,"Guardar datos", Toast.LENGTH_SHORT).show();
                 return true;
             case android.R.id.home:
                 finish();

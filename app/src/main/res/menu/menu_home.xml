@@ -3,4 +3,10 @@
     xmlns:tools="http://schemas.android.com/tools" tools:context=".HomeActivity">
     <item android:id="@+id/action_settings" android:title="@string/action_settings"
         android:orderInCategory="100" app:showAsAction="never" />
+
+    <item android:id="@+id/action_unbind" android:title="@string/action_unbind"
+        android:orderInCategory="100" app:showAsAction="never" android:icon="@drawable/sun_25"/>
+
+    <item android:id="@+id/action_exit" android:title="@string/action_exit"
+        android:orderInCategory="100" android:icon="@drawable/sun_25" app:showAsAction="never" />
 </menu>

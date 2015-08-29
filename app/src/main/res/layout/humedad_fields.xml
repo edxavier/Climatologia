@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.CardView
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/card_view"
+    android:layout_gravity="center_horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="5dp"
+    card_view:cardElevation="4dp"
+    card_view:contentPadding="8dp"
+    card_view:cardBackgroundColor="@color/md_grey_100"
+    card_view:cardCornerRadius="4dp">
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent" android:layout_height="match_parent">
+
+    <LinearLayout
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:gravity="center"
+        android:layout_marginTop="5dp"
+        android:layout_height="wrap_content" >
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/imageView"
+            android:src="@drawable/humedad"
+            android:layout_gravity="center_horizontal" />
+
+        <TextView
+            android:textAppearance="@style/TextAppearance.AppCompat.Medium.Inverse"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingTop="8dp"
+            android:layout_gravity="center"
+            android:text="Datos de Humedad en %"
+            android:textColor="@color/md_text"/>
+    </LinearLayout>
+
+    <LinearLayout
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+        <TextView
+            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="40"
+            android:layout_gravity="center"
+            android:text="Hum. Actual"
+            android:textColor="@color/md_text"
+            android:id="@+id/textView3" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_gravity="center"
+            android:layout_height="wrap_content"
+            android:src="@drawable/wet_25"/>
+
+        <EditText
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="60"
+            android:inputType="numberDecimal"
+            android:ems="10"
+            android:hint="@string/porciento"
+            android:id="@+id/text_humedad" />
+    </LinearLayout>
+
+    <LinearLayout
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+        <TextView
+            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="40"
+            android:layout_gravity="center"
+            android:text="Hum. Minima"
+            android:textColor="@color/md_text"
+            android:id="@+id/textView4" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_gravity="center"
+            android:layout_height="wrap_content"
+            android:src="@drawable/wet_25"/>
+
+        <EditText
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="60"
+            android:inputType="numberDecimal"
+            android:ems="10"
+            android:hint="@string/porciento"
+            android:id="@+id/text_hum_min" />
+    </LinearLayout>
+
+    <LinearLayout
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+        <TextView
+            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="40"
+            android:layout_gravity="center"
+            android:text="Hum. Maxima"
+            android:textColor="@color/md_text"
+            android:id="@+id/textView5" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_gravity="center"
+            android:layout_height="wrap_content"
+            android:src="@drawable/wet_25"/>
+
+        <EditText
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="60"
+            android:inputType="numberDecimal"
+            android:ems="10"
+            android:hint="@string/porciento"
+            android:id="@+id/text_hum_max" />
+    </LinearLayout>
+
+    <LinearLayout
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+        <TextView
+            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="40"
+            android:layout_gravity="center"
+            android:text="Hum. Media"
+            android:textColor="@color/md_text"
+            android:id="@+id/textVsiew5" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_gravity="center"
+            android:layout_height="wrap_content"
+            android:src="@drawable/wet_25"/>
+
+        <EditText
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="60"
+            android:inputType="numberDecimal"
+            android:ems="10"
+            android:hint="@string/porciento"
+            android:id="@+id/text_hum_med" />
+    </LinearLayout>
+
+    <LinearLayout
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" >
+
+        <TextView
+            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="40"
+            android:layout_gravity="center"
+            android:text="Hum. del Suelo"
+            android:textColor="@color/md_text"
+            android:id="@+id/textView55" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_gravity="center"
+            android:layout_height="wrap_content"
+            android:src="@drawable/wet_25"/>
+
+        <EditText
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="60"
+            android:inputType="numberDecimal"
+            android:ems="10"
+            android:hint="@string/porciento"
+            android:id="@+id/text_hum_suelo" />
+    </LinearLayout>
+
+
+
+
+</LinearLayout>
+
+</android.support.v7.widget.CardView>

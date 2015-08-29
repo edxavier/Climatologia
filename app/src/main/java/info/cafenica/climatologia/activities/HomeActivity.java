@@ -10,7 +10,6 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
-import android.support.v4.widget.NestedScrollView;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -18,12 +17,13 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.widget.FrameLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.support.v4.app.Fragment;
 
 import info.cafenica.climatologia.R;
-import db.models.Usuario;
+import info.cafenica.climatologia.db.models.Usuario;
+import info.cafenica.climatologia.fragments.FragmentClima;
 
 public class HomeActivity extends AppCompatActivity implements View.OnClickListener {
     Usuario usuario = null;
@@ -32,6 +32,7 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
     Toolbar toolbar;
     ActionBar actionBar;
     TextView textView;
+    FragmentManager fragmentManager;
 
 
     @Override
@@ -66,6 +67,10 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
         FloatingActionButton fabBtn = (FloatingActionButton) findViewById(R.id.fabBtn_nuevo);
         fabBtn.setOnClickListener(this);
 
+        fragmentManager = getSupportFragmentManager();
+        Fragment clima = new FragmentClima();
+        fragmentManager.beginTransaction().replace(R.id.fragmentContainer, clima).commit();
+
         //setupNavigationDrawerContent(navigationView);
 
     }
@@ -89,6 +94,22 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
             case android.R.id.home:
                 drawerLayout.openDrawer(GravityCompat.START);
                 return true;
+            case R.id.action_exit:
+                finish();
+                return true;
+            case R.id.action_unbind:
+                CoordinatorLayout content = (CoordinatorLayout) findViewById(R.id.contentLayout);
+                Snackbar.make(content, "Desvincular cuenta?", Snackbar.LENGTH_INDEFINITE)
+                        .setAction("SI", new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                usuario.delete();
+                                Intent intent = new Intent(HomeActivity.this, LoginActivity.class);
+                                startActivity(intent);
+                                finish();
+                            }
+                        }).show();
+                return true;
         }
         return super.onOptionsItemSelected(item);
     }
@@ -98,43 +119,39 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
                 new NavigationView.OnNavigationItemSelectedListener() {
                     @Override
                     public boolean onNavigationItemSelected(MenuItem menuItem) {
-                        textView = (TextView) findViewById(R.id.textView);
                         Fragment fragment = null;
 
                         switch (menuItem.getItemId()) {
                             case R.id.item_navigation_drawer_inbox:
                                 menuItem.setChecked(true);
-                                textView.setText(menuItem.getTitle());
+                                collapsingToolbarLayout.setTitle(menuItem.getTitle());
                                 drawerLayout.closeDrawer(GravityCompat.START);
                                 //fragment = new FragmentInternacionales();
                                 break;
-                            case R.id.item_navigation_drawer_starred:
+                            case R.id.item_navigation_drawer_unbind:
                                 menuItem.setChecked(true);
-                                textView.setText(menuItem.getTitle());
+                                collapsingToolbarLayout.setTitle(menuItem.getTitle());
                                 drawerLayout.closeDrawer(GravityCompat.START);
                                 CoordinatorLayout content = (CoordinatorLayout) findViewById(R.id.contentLayout);
-                                Snackbar.make(content, menuItem.getTitle(), Snackbar.LENGTH_INDEFINITE)
-                                .setAction("Volver", new View.OnClickListener() {
-                                @Override
-                                public void onClick(View v) {
-
-                                }
+                                Snackbar.make(content, "Desvincular usuario?", Snackbar.LENGTH_INDEFINITE)
+                                .setAction("SI", new View.OnClickListener() {
+                                    @Override
+                                    public void onClick(View v) {
+                                        usuario.delete();
+                                        Intent intent = new Intent(HomeActivity.this, LoginActivity.class);
+                                        startActivity(intent);
+                                        finish();
+                                    }
                                 }).show();
                                 //fragment = new FragmentNacionales();
                                 break;
-                            case R.id.item_navigation_drawer_sent_mail:
+                            case R.id.item_navigation_drawer_exit:
                                 menuItem.setChecked(true);
-                                textView.setText(menuItem.getTitle());
-                                drawerLayout.closeDrawer(GravityCompat.START);
-                                return true;
-                            case R.id.item_navigation_drawer_drafts:
-                                menuItem.setChecked(true);
-                                textView.setText(menuItem.getTitle());
                                 drawerLayout.closeDrawer(GravityCompat.START);
                                 return true;
                             case R.id.item_navigation_drawer_settings:
                                 menuItem.setChecked(true);
-                                textView.setText(menuItem.getTitle());
+                                collapsingToolbarLayout.setTitle(menuItem.getTitle());
                                 //Toast.makeText(MainActivity.this, "Launching " + menuItem.getTitle().toString(), Toast.LENGTH_SHORT).show();
                                 drawerLayout.closeDrawer(GravityCompat.START);
                                 //Intent intent = new Intent(MainActivity.this, SettingsActivity.class);

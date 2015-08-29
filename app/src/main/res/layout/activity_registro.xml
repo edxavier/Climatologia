@@ -22,6 +22,8 @@
         <LinearLayout
             android:orientation="vertical"
             android:layout_marginTop="8dp"
+            android:layout_marginBottom="8dp"
+            android:padding="5dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 <!--
@@ -49,366 +51,228 @@
                 android:layout_marginStart="16dp"
                 android:background="@color/md_black_1000_25" />
 -->
-            <LinearLayout
+
+            <include layout="@layout/celcius_fields"></include>
+
+            <include layout="@layout/humedad_fields"></include>
+
+            <android.support.v7.widget.CardView
+                xmlns:card_view="http://schemas.android.com/apk/res-auto"
+                xmlns:android="http://schemas.android.com/apk/res/android"
+                android:id="@+id/card_view"
+                android:layout_gravity="center_horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                card_view:cardElevation="4dp"
+                card_view:contentPadding="8dp"
+                card_view:cardBackgroundColor="@color/md_grey_100"
+                card_view:cardCornerRadius="4dp">
+
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:gravity="center"
+                    android:layout_height="wrap_content" >
+
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:gravity="center"
+                        android:layout_height="wrap_content" >
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:id="@+id/imageView"
+                            android:src="@drawable/rain_32"
+                            android:layout_gravity="center_horizontal" />
+
+                        <TextView
+                            android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:paddingTop="8dp"
+                            android:layout_gravity="center"
+                            android:text="Datos de Precipitacion en mm"
+                            android:textColor="@color/md_text"/>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content" >
+
+                        <TextView
+                            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="40"
+                            android:layout_gravity="center"
+                            android:text="Precipitacion"
+                            android:textColor="@color/md_text"
+                            android:id="@+id/textView55" />
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/rain_25"/>
+
+                        <EditText
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="60"
+                            android:inputType="numberDecimal"
+                            android:ems="10"
+                            android:hint="mm"
+                            android:id="@+id/text_precipitacion" />
+                    </LinearLayout>
+                </LinearLayout>
+
+            </android.support.v7.widget.CardView>
+
+            <android.support.v7.widget.CardView
+                xmlns:card_view="http://schemas.android.com/apk/res-auto"
+                xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_gravity="center_horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                card_view:cardElevation="4dp"
+                card_view:contentPadding="8dp"
+                card_view:cardBackgroundColor="@color/md_grey_100"
+                card_view:cardCornerRadius="4dp">
+
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:gravity="center"
+                    android:layout_marginTop="5dp"
+                    android:layout_height="wrap_content" >
+
+                    <LinearLayout
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
                 android:gravity="center"
                 android:layout_marginTop="5dp"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content" >
+
                 <ImageView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:id="@+id/imageView2"
-                    android:src="@drawable/thermometer_32"
+                    android:src="@drawable/sun_32"
                     android:layout_gravity="center_horizontal" />
+
                 <TextView
-                    android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:paddingTop="8dp"
                     android:layout_gravity="center"
-                    android:text="Datos de Temperatura en ºC"
-                    android:textColor="@color/md_text" />
-
-            </LinearLayout>
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="1sp"
-                android:layout_marginEnd="16dp"
-                android:layout_marginRight="16dp"
-                android:layout_marginLeft="16dp"
-                android:layout_marginStart="16dp"
-                android:background="@color/md_black_1000_10" />
-
-            <LinearLayout
-                android:layout_marginEnd="16dp"
-                android:layout_marginRight="16dp"
-                android:layout_marginLeft="16dp"
-                android:layout_marginStart="16dp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <TextView
-                    android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="40"
-                    android:layout_gravity="center"
-                    android:text="Temp. Actual"
-                    android:textColor="@color/md_text" />
-
-                <EditText
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="60"
-                    android:inputType="numberDecimal"
-                    android:ems="10"
-                    android:id="@+id/text_temp_act" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_marginEnd="16dp"
-                android:layout_marginRight="16dp"
-                android:layout_marginLeft="16dp"
-                android:layout_marginStart="16dp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <TextView
-                    android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="40"
-                    android:layout_gravity="center"
-                    android:text="Temp. Minima"
-                    android:textColor="@color/md_text" />
-
-                <EditText
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="60"
-                    android:inputType="numberDecimal"
-                    android:ems="10"
-                    android:id="@+id/text_temp_min" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_marginEnd="16dp"
-                android:layout_marginRight="16dp"
-                android:layout_marginLeft="16dp"
-                android:layout_marginStart="16dp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <TextView
-                    android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="40"
-                    android:layout_gravity="center"
-                    android:text="Temp. Maxima"
-                    android:textColor="@color/md_text" />
-
-                <EditText
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="60"
-                    android:inputType="numberDecimal"
-                    android:ems="10"
-                    android:id="@+id/text_temp_max" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_marginEnd="16dp"
-                android:layout_marginRight="16dp"
-                android:layout_marginLeft="16dp"
-                android:layout_marginStart="16dp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <TextView
-                    android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="40"
-                    android:layout_gravity="center"
-                    android:text="Temp. Rocio"
-                    android:textColor="@color/md_text" />
-
-                <EditText
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="60"
-                    android:inputType="numberDecimal"
-                    android:ems="10"
-                    android:id="@+id/text_rocio" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_marginEnd="16dp"
-                android:layout_marginRight="16dp"
-                android:layout_marginLeft="16dp"
-                android:layout_marginStart="16dp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <TextView
-                    android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="40"
-                    android:layout_gravity="center"
-                    android:text="Temp. Rocio Min."
-                    android:textColor="@color/md_text" />
-
-                <EditText
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="60"
-                    android:inputType="numberDecimal"
-                    android:ems="10"
-                    android:id="@+id/text_rocio_min" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_marginEnd="16dp"
-                android:layout_marginRight="16dp"
-                android:layout_marginLeft="16dp"
-                android:layout_marginStart="16dp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-
-                <TextView
-                    android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="40"
-                    android:layout_gravity="center"
-                    android:text="Temp. Rocio Maxima."
-                    android:textColor="@color/md_text" />
-
-                <EditText
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="60"
-                    android:inputType="numberDecimal"
-                    android:ems="10"
-                    android:id="@+id/text_rocio_max" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_marginEnd="16dp"
-                android:layout_marginRight="16dp"
-                android:layout_marginLeft="16dp"
-                android:layout_marginStart="16dp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" >
-
-                <TextView
-                    android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="40"
-                    android:layout_gravity="center"
-                    android:text="Temp. Suelo"
-                    android:textColor="@color/md_text"
-                    android:id="@+id/textView2" />
-
-                <EditText
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="60"
-                    android:inputType="numberDecimal"
-                    android:ems="10"
-                    android:id="@+id/text_temp_suelo" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:orientation="horizontal"
-                android:layout_width="match_parent"
-                android:gravity="center"
-                android:layout_marginTop="5dp"
-                android:layout_height="wrap_content" >
-
-                <ImageView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/imageView"
-                    android:src="@drawable/humedad"
-                    android:layout_gravity="center_horizontal" />
-
-                <TextView
-                    android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:paddingTop="8dp"
-                    android:layout_gravity="center"
-                    android:text="Datos de Humedad en %"
+                    android:text="Datos de Brillo Solar en %"
                     android:textColor="@color/md_text"/>
-            </LinearLayout>
-            <View
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" >
+
+                    <TextView
+                        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="40"
+                        android:layout_gravity="center"
+                        android:text="Brillo Solar"
+                        android:textColor="@color/md_text"
+                        android:id="@+id/textView555" />
+
+                        <ImageView
+                            android:layout_width="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/sun_25"/>
+
+                    <EditText
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="60"
+                        android:inputType="numberDecimal"
+                        android:ems="10"
+                        android:hint="%"
+                        android:id="@+id/text_brillo_sol" />
+                </LinearLayout>
+
+                </LinearLayout>
+            </android.support.v7.widget.CardView>
+
+            <android.support.v7.widget.CardView
+                xmlns:card_view="http://schemas.android.com/apk/res-auto"
+                xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_gravity="center_horizontal"
                 android:layout_width="match_parent"
-                android:layout_height="1sp"
-                android:layout_marginEnd="16dp"
-                android:layout_marginRight="16dp"
-                android:layout_marginLeft="16dp"
-                android:layout_marginStart="16dp"
-                android:background="@color/md_black_1000_10" />
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                card_view:cardElevation="4dp"
+                card_view:contentPadding="8dp"
+                card_view:cardBackgroundColor="@color/md_grey_100"
+                card_view:cardCornerRadius="4dp">
 
-            <LinearLayout
-                android:layout_marginEnd="16dp"
-                android:layout_marginRight="16dp"
-                android:layout_marginLeft="16dp"
-                android:layout_marginStart="16dp"
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:orientation="vertical"
+                    android:layout_height="wrap_content" >
+
+                    <TextView
+                        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:text="Observaciones:"
+                        android:textColor="@color/md_text"
+                        android:id="@+id/textViewxc555" />
+
+                    <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="textMultiLine"
+                        android:ems="10"
+                        android:id="@+id/text_observacion"
+                        android:layout_gravity="center_horizontal" />
+
+                </LinearLayout>
+
+
+            </android.support.v7.widget.CardView>
+
+            <android.support.v7.widget.CardView
+                xmlns:card_view="http://schemas.android.com/apk/res-auto"
+                xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_gravity="center_horizontal"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" >
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="8dp"
+                card_view:cardElevation="4dp"
+                card_view:contentPadding="8dp"
+                card_view:cardBackgroundColor="@color/md_green_100"
+                card_view:cardCornerRadius="4dp">
 
-                <TextView
-                    android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-                    android:layout_width="0dp"
+                <com.prolificinteractive.materialcalendarview.MaterialCalendarView
+                    android:id="@+id/calendarView"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_weight="40"
-                    android:layout_gravity="center"
-                    android:text="Hum. Actual"
-                    android:textColor="@color/md_text"
-                    android:id="@+id/textView3" />
+                    xmlns:app="http://schemas.android.com/apk/res-auto"
+                    app:mcv_showOtherDates="true"
+                    app:mcv_arrowColor="@color/md_teal_700"
+                    />
 
-                <EditText
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="60"
-                    android:inputType="numberDecimal"
-                    android:ems="10"
-                    android:id="@+id/text_humedad" />
-            </LinearLayout>
+            </android.support.v7.widget.CardView>
 
-            <LinearLayout
-                android:layout_marginEnd="16dp"
-                android:layout_marginRight="16dp"
-                android:layout_marginLeft="16dp"
-                android:layout_marginStart="16dp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" >
-
-                <TextView
-                    android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="40"
-                    android:layout_gravity="center"
-                    android:text="Hum. Minima"
-                    android:textColor="@color/md_text"
-                    android:id="@+id/textView4" />
-
-                <EditText
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="60"
-                    android:inputType="numberDecimal"
-                    android:ems="10"
-                    android:id="@+id/text_hum_min" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_marginEnd="16dp"
-                android:layout_marginRight="16dp"
-                android:layout_marginLeft="16dp"
-                android:layout_marginStart="16dp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" >
-
-                <TextView
-                    android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="40"
-                    android:layout_gravity="center"
-                    android:text="Hum. Maxima"
-                    android:textColor="@color/md_text"
-                    android:id="@+id/textView5" />
-
-                <EditText
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="60"
-                    android:inputType="numberDecimal"
-                    android:ems="10"
-                    android:id="@+id/text_hum_max" />
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_marginEnd="16dp"
-                android:layout_marginRight="16dp"
-                android:layout_marginLeft="16dp"
-                android:layout_marginStart="16dp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" >
-
-                <TextView
-                    android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="40"
-                    android:layout_gravity="center"
-                    android:text="Hum. del Suelo"
-                    android:textColor="@color/md_text"
-                    android:id="@+id/textView55" />
-
-                <EditText
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="60"
-                    android:inputType="numberDecimal"
-                    android:ems="10"
-                    android:id="@+id/text_hum_suelo" />
-            </LinearLayout>
         </LinearLayout>
+
     </ScrollView>
 
 </FrameLayout>

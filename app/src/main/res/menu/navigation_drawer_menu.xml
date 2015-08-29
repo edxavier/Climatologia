@@ -5,20 +5,14 @@
         <item
             android:checked="true"
             android:id="@+id/item_navigation_drawer_inbox"
+            android:icon="@drawable/home_64"
+            android:title="Inicio" />
 
-            android:title="Registros del mes" />
-        <item
-            android:id="@+id/item_navigation_drawer_starred"
+        <item android:id="@+id/item_navigation_drawer_unbind" android:title="@string/action_unbind"
+            android:icon="@drawable/sun_25"/>
 
-            android:title="Sincronizacion pendiente" />
-        <item
-            android:id="@+id/item_navigation_drawer_sent_mail"
-
-            android:title="Aerolineas" />
-        <item
-            android:id="@+id/item_navigation_drawer_drafts"
-
-            android:title="Drafts" />
+        <item android:id="@+id/item_navigation_drawer_exit" android:title="@string/action_exit"
+            />
     </group>
 
     <item android:title="Configuracion">
