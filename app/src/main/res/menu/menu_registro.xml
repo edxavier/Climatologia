@@ -6,7 +6,7 @@
     <!-- -->
 
     <item android:id="@+id/ac_save" android:title="@string/ac_save"
-        android:icon="@drawable/save_64"
+        android:icon="@drawable/ic_action_save"
 
         android:orderInCategory="100" app:showAsAction="ifRoom" />
 
