@@ -11,8 +11,6 @@
     card_view:cardBackgroundColor="@color/md_grey_50"
     card_view:cardCornerRadius="2dp">
 
-
-
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"
@@ -20,7 +18,7 @@
 
             <ImageView android:layout_width="50dp"
                 android:layout_height="50dp"
-                android:id="@+id/image_view"/>
+                android:id="@+id/img_fecha"/>
 
         <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
             android:layout_width="match_parent" android:layout_height="wrap_content"
@@ -82,7 +80,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:id="@+id/text_temp_min"
+                    android:id="@+id/text_brillo_solar"
                     android:layout_gravity="center"
                     android:textAppearance="@style/TextAppearance.AppCompat.Caption"
                     android:text="25%"/>
@@ -99,7 +97,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:layout_gravity="center"
-                    android:id="@+id/text_temp_suelo"
+                    android:id="@+id/text_precipitacion"
                     android:textAppearance="@style/TextAppearance.AppCompat.Caption"
                     android:text="25"/>
 

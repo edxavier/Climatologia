@@ -43,30 +43,8 @@ public class FragmentClima extends Fragment {
         mRecyclerView.setLayoutManager(mLayoutManager);
         mRecyclerView.setItemAnimator(new DefaultItemAnimator());
 
-        ArrayList<Clima> variablesClima = new ArrayList<>();
-        Clima clima = new Clima();
-        clima.setTemp_actual(28);
-        clima.setTemp_min(27);
-        variablesClima.add(clima);
-        clima = new Clima();
-        clima.setTemp_actual(26);
-        variablesClima.add(clima);
-        clima = new Clima();
-        clima.setTemp_actual(25);;
-        variablesClima.add(clima);
-        clima = new Clima();
-        clima.setTemp_actual(24);
-        clima = new Clima();
-        clima.setTemp_actual(23);
-        variablesClima.add(clima);
-        clima = new Clima();
-        clima.setTemp_actual(22);
-        variablesClima.add(clima);
-        clima = new Clima();
-        clima.setTemp_actual(21);
-        variablesClima.add(clima);
-
-
+        Clima clima = new Clima(getActivity());
+        ArrayList<Clima> variablesClima = clima.getClimaEntries();
 
         ClimaAdapter adapter = new ClimaAdapter(R.layout.row_clima, variablesClima);
         AlphaInAnimationAdapter alphaAdapter = new AlphaInAnimationAdapter(adapter);

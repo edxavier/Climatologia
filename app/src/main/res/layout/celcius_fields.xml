@@ -47,7 +47,7 @@
                 android:textAppearance="@style/TextAppearance.AppCompat.Body1"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="40"
+                android:layout_weight="60"
                 android:layout_gravity="center"
                 android:text="Temp. Actual"
                 android:textColor="@color/md_text" />
@@ -61,7 +61,7 @@
             <EditText
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="60"
+                android:layout_weight="40"
                 android:inputType="numberDecimal"
                 android:ems="10"
                 android:hint="@string/celcius"
@@ -78,7 +78,7 @@
                 android:textAppearance="@style/TextAppearance.AppCompat.Body1"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="40"
+                android:layout_weight="60"
                 android:layout_gravity="center"
                 android:text="Temp. Minima"
                 android:textColor="@color/md_text" />
@@ -92,7 +92,7 @@
             <EditText
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="60"
+                android:layout_weight="40"
                 android:inputType="numberDecimal"
                 android:ems="10"
                 android:hint="@string/celcius"
@@ -109,7 +109,7 @@
                 android:textAppearance="@style/TextAppearance.AppCompat.Body1"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="40"
+                android:layout_weight="60"
                 android:layout_gravity="center"
                 android:text="Temp. Maxima"
                 android:textColor="@color/md_text" />
@@ -123,7 +123,7 @@
             <EditText
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="60"
+                android:layout_weight="40"
                 android:inputType="numberDecimal"
                 android:ems="10"
                 android:hint="@string/celcius"
@@ -140,7 +140,7 @@
                 android:textAppearance="@style/TextAppearance.AppCompat.Body1"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="40"
+                android:layout_weight="60"
                 android:layout_gravity="center"
                 android:text="Temp. Rocio"
                 android:textColor="@color/md_text" />
@@ -154,7 +154,7 @@
             <EditText
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="60"
+                android:layout_weight="40"
                 android:inputType="numberDecimal"
                 android:ems="10"
                 android:hint="@string/celcius"
@@ -171,7 +171,7 @@
                 android:textAppearance="@style/TextAppearance.AppCompat.Body1"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="40"
+                android:layout_weight="60"
                 android:layout_gravity="center"
                 android:text="Temp. Rocio Min."
                 android:textColor="@color/md_text" />
@@ -185,7 +185,7 @@
             <EditText
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="60"
+                android:layout_weight="40"
                 android:inputType="numberDecimal"
                 android:ems="10"
                 android:hint="@string/celcius"
@@ -202,7 +202,7 @@
                 android:textAppearance="@style/TextAppearance.AppCompat.Body1"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="40"
+                android:layout_weight="60"
                 android:layout_gravity="center"
                 android:text="Temp. Rocio Max."
                 android:textColor="@color/md_text" />
@@ -216,7 +216,7 @@
             <EditText
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="60"
+                android:layout_weight="40"
                 android:inputType="numberDecimal"
                 android:ems="10"
                 android:hint="@string/celcius"
@@ -233,7 +233,7 @@
                 android:textAppearance="@style/TextAppearance.AppCompat.Body1"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="40"
+                android:layout_weight="60"
                 android:layout_gravity="center"
                 android:text="Temp. Suelo"
                 android:textColor="@color/md_text"
@@ -248,7 +248,7 @@
             <EditText
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="60"
+                android:layout_weight="40"
                 android:inputType="numberDecimal"
                 android:ems="10"
                 android:hint="@string/celcius"
@@ -265,7 +265,7 @@
                 android:textAppearance="@style/TextAppearance.AppCompat.Body1"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="40"
+                android:layout_weight="60"
                 android:layout_gravity="center"
                 android:text="Temp. Media"
                 android:textColor="@color/md_text"
@@ -280,7 +280,7 @@
             <EditText
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_weight="60"
+                android:layout_weight="40"
                 android:inputType="numberDecimal"
                 android:ems="10"
                 android:hint="@string/celcius"

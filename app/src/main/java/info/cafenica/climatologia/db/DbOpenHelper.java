@@ -22,7 +22,7 @@ public class DbOpenHelper extends SQLiteOpenHelper {
         sql = "create table clima ( _id int primary key, temp_act double, temp_min double, temp_max double," +
                 "temp_media double, temp_rocio double, temp_rocio_min double, temp_rocio_max double, temp_suelo double," +
                 "hum_act double, hum_min double, hum_max double, hum_suelo double, hum_media double," +
-                "brillo double, presipitacion double, obserbacion text, fecha text)";
+                "brillo double, precipitacion double, observacion text, fecha_prod int, fecha_sist int, usuario int)";
         db.execSQL(sql);
     }
 

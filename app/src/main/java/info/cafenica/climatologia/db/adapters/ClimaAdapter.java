@@ -28,7 +28,9 @@ public class ClimaAdapter extends RecyclerView.Adapter<ClimaAdapter.ViewHolder> 
     public static class ViewHolder extends RecyclerView.ViewHolder {
         // each data item is just a string in this case
         TextView txtTempAct;
-        TextView txtTempMin;
+        TextView txtBrillo;
+        TextView txtPrecipitacion;
+        TextView txtHumedad;
         TextView txtFecha;
         ImageView image;
         Typeface roboto;
@@ -39,13 +41,13 @@ public class ClimaAdapter extends RecyclerView.Adapter<ClimaAdapter.ViewHolder> 
 
             txtTempAct = (TextView) viewLayout.findViewById(R.id.text_temp_actual);
             txtFecha = (TextView) viewLayout.findViewById(R.id.text_fecha);
-            txtTempMin = (TextView) viewLayout.findViewById(R.id.text_temp_min);
-            txtTempMin.setTypeface(roboto);
-            txtTempAct.setTypeface(roboto);
-            txtFecha.setTypeface(roboto);
-            image = (ImageView) viewLayout.findViewById(R.id.image_view);
+            txtBrillo = (TextView) viewLayout.findViewById(R.id.text_brillo_solar);
+            txtPrecipitacion = (TextView) viewLayout.findViewById(R.id.text_precipitacion);
+            txtHumedad = (TextView) viewLayout.findViewById(R.id.text_humedad);
+            image = (ImageView) viewLayout.findViewById(R.id.img_fecha);
 
-
+            txtBrillo.setTypeface(roboto);
+            txtFecha = txtTempAct = txtHumedad = txtPrecipitacion = txtBrillo;
 
         }
     }
@@ -67,7 +69,8 @@ public class ClimaAdapter extends RecyclerView.Adapter<ClimaAdapter.ViewHolder> 
     public void onBindViewHolder(ClimaAdapter.ViewHolder holder, int position) {
         Clima entrada = variablesClima.get(position);
         holder.txtTempAct.setText(String.valueOf(entrada.getTemp_actual()));
-        holder.txtTempMin.setText(String.valueOf(entrada.getTemp_min()));
+        holder.txtPrecipitacion.setText(String.valueOf(entrada.getPrecipitacion()));
+
         ColorGenerator generator = ColorGenerator.MATERIAL;
         int color1 = generator.getColor(String.valueOf(entrada.getTemp_actual()));
         TextDrawable drawable = TextDrawable.builder()
