@@ -40,7 +40,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:id="@+id/text_fecha"
+                    android:id="@+id/label_fecha"
                     android:paddingLeft="8dp"
                     android:textAppearance="@style/TextAppearance.AppCompat.Subhead"
                     android:text="Sept. de 2015"/>
@@ -64,7 +64,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:id="@+id/text_temp_actual"
+                    android:id="@+id/label_temp_actual"
                     android:layout_gravity="center"
                     android:textAppearance="@style/TextAppearance.AppCompat.Caption"
                     android:text="25ºC"/>
@@ -80,7 +80,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:id="@+id/text_brillo_solar"
+                    android:id="@+id/label_brillo_solar"
                     android:layout_gravity="center"
                     android:textAppearance="@style/TextAppearance.AppCompat.Caption"
                     android:text="25%"/>
@@ -97,7 +97,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:layout_gravity="center"
-                    android:id="@+id/text_precipitacion"
+                    android:id="@+id/label_precipitacion"
                     android:textAppearance="@style/TextAppearance.AppCompat.Caption"
                     android:text="25"/>
 
@@ -112,7 +112,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:layout_gravity="center"
-                    android:id="@+id/text_humedad"
+                    android:id="@+id/label_humedad"
                     android:textAppearance="@style/TextAppearance.AppCompat.Caption"
                     android:text="25"/>
 

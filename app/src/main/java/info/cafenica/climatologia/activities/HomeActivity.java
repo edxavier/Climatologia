@@ -14,6 +14,7 @@ import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -22,10 +23,12 @@ import android.widget.Toast;
 import android.support.v4.app.Fragment;
 
 import info.cafenica.climatologia.R;
+import info.cafenica.climatologia.db.models.Clima;
 import info.cafenica.climatologia.db.models.Usuario;
 import info.cafenica.climatologia.fragments.FragmentClima;
 
 public class HomeActivity extends AppCompatActivity implements View.OnClickListener {
+    private static final int REGISTER = 1;
     Usuario usuario = null;
     DrawerLayout drawerLayout;
     CollapsingToolbarLayout collapsingToolbarLayout;
@@ -33,6 +36,7 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
     ActionBar actionBar;
     TextView textView;
     FragmentManager fragmentManager;
+    FragmentClima frgClima = null;
 
 
     @Override
@@ -68,8 +72,8 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
         fabBtn.setOnClickListener(this);
 
         fragmentManager = getSupportFragmentManager();
-        Fragment clima = new FragmentClima();
-        fragmentManager.beginTransaction().replace(R.id.fragmentContainer, clima).commit();
+        frgClima = new FragmentClima();
+        fragmentManager.beginTransaction().replace(R.id.fragmentContainer, frgClima).commit();
 
         //setupNavigationDrawerContent(navigationView);
 
@@ -119,7 +123,6 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
                 new NavigationView.OnNavigationItemSelectedListener() {
                     @Override
                     public boolean onNavigationItemSelected(MenuItem menuItem) {
-                        Fragment fragment = null;
 
                         switch (menuItem.getItemId()) {
                             case R.id.item_navigation_drawer_inbox:
@@ -177,8 +180,20 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public void onClick(View v) {
-        Toast.makeText(v.getContext(), "Nuevo Registro", Toast.LENGTH_SHORT).show();
         Intent intent = new Intent(HomeActivity.this, Registro.class);
-        startActivity(intent);
+        //startActivity(intent);
+        startActivityForResult(intent,REGISTER);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if(resultCode==RESULT_OK){
+            Clima clima =(Clima) data.getParcelableExtra("entry");
+            Log.d("REGISTRO", String.valueOf(clima.getTemp_actual()));
+            frgClima.addClimaEntry(clima);
+        }
+
     }
 }

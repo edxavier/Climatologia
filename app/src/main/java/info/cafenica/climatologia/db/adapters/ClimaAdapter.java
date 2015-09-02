@@ -13,9 +13,14 @@ import android.widget.TextView;
 import com.amulyakhare.textdrawable.TextDrawable;
 import com.amulyakhare.textdrawable.util.ColorGenerator;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.TimeZone;
 
 import info.cafenica.climatologia.R;
+import info.cafenica.climatologia.db.Utilidades;
 import info.cafenica.climatologia.db.models.Clima;
 
 /**
@@ -39,15 +44,16 @@ public class ClimaAdapter extends RecyclerView.Adapter<ClimaAdapter.ViewHolder> 
             super(viewLayout);
             roboto = Typeface.createFromAsset(viewLayout.getContext().getAssets(),"fonts/Roboto-Regular.ttf");
 
-            txtTempAct = (TextView) viewLayout.findViewById(R.id.text_temp_actual);
-            txtFecha = (TextView) viewLayout.findViewById(R.id.text_fecha);
-            txtBrillo = (TextView) viewLayout.findViewById(R.id.text_brillo_solar);
-            txtPrecipitacion = (TextView) viewLayout.findViewById(R.id.text_precipitacion);
-            txtHumedad = (TextView) viewLayout.findViewById(R.id.text_humedad);
+            txtTempAct = (TextView) viewLayout.findViewById(R.id.label_temp_actual);
+            txtFecha = (TextView) viewLayout.findViewById(R.id.label_fecha);
+            txtBrillo = (TextView) viewLayout.findViewById(R.id.label_brillo_solar);
+            txtPrecipitacion = (TextView) viewLayout.findViewById(R.id.label_precipitacion);
+            txtHumedad = (TextView) viewLayout.findViewById(R.id.label_humedad);
             image = (ImageView) viewLayout.findViewById(R.id.img_fecha);
 
-            txtBrillo.setTypeface(roboto);
-            txtFecha = txtTempAct = txtHumedad = txtPrecipitacion = txtBrillo;
+            txtBrillo.setTypeface(roboto); txtFecha.setTypeface(roboto);
+            txtTempAct.setTypeface(roboto) ;txtHumedad.setTypeface(roboto);
+            txtPrecipitacion.setTypeface(roboto);
 
         }
     }
@@ -70,15 +76,26 @@ public class ClimaAdapter extends RecyclerView.Adapter<ClimaAdapter.ViewHolder> 
         Clima entrada = variablesClima.get(position);
         holder.txtTempAct.setText(String.valueOf(entrada.getTemp_actual()));
         holder.txtPrecipitacion.setText(String.valueOf(entrada.getPrecipitacion()));
+        holder.txtHumedad.setText(String.valueOf(entrada.getHum_actual()));
+        holder.txtBrillo.setText(String.valueOf(entrada.getBrillo_solar()));
+
+        Date fecha = Utilidades.dateFromInt(entrada.getFecha_productor());
+        Calendar calendar = Calendar.getInstance(TimeZone.getDefault());
+        calendar.setTime(fecha);
+        SimpleDateFormat month_date = new SimpleDateFormat("MMMM");
+        String diaDelMes = String.valueOf(calendar.get(Calendar.DAY_OF_MONTH));
+        String year = String.valueOf(calendar.get(Calendar.YEAR));
+        String month_name = month_date.format(calendar.getTime());
+        holder.txtFecha.setText(month_name+" de "+year);
 
         ColorGenerator generator = ColorGenerator.MATERIAL;
-        int color1 = generator.getColor(String.valueOf(entrada.getTemp_actual()));
+        int color1 = generator.getColor(diaDelMes);
         TextDrawable drawable = TextDrawable.builder()
                 .beginConfig()
                 .useFont(holder.roboto)
                 .fontSize(24) /* size in px */
                 .endConfig()
-                .buildRoundRect(String.valueOf(entrada.getTemp_actual()), color1, 10);
+                .buildRoundRect(diaDelMes, color1, 10);
 
         holder.image.setImageDrawable(drawable);
 
@@ -92,4 +109,12 @@ public class ClimaAdapter extends RecyclerView.Adapter<ClimaAdapter.ViewHolder> 
             return 0;
         }
     }
+
+    public void addItem(Clima entry){
+        variablesClima.add(0,entry);
+        this.notifyItemInserted(0);
+        Log.d("REGISTRO", "En add item de adaptaer");
+    }
+
+
 }

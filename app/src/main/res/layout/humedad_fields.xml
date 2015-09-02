@@ -37,7 +37,8 @@
             android:paddingTop="8dp"
             android:layout_gravity="center"
             android:text="Datos de Humedad en %"
-            android:textColor="@color/md_text"/>
+            android:textColor="@color/md_text"
+            android:id="@+id/humedad_tittle" />
     </LinearLayout>
 
     <LinearLayout

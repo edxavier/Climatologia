@@ -1,5 +1,7 @@
 package info.cafenica.climatologia.activities;
 
+import android.app.ProgressDialog;
+import android.content.Intent;
 import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
 import android.os.Build;
@@ -14,11 +16,14 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.prolificinteractive.materialcalendarview.CalendarDay;
 import com.prolificinteractive.materialcalendarview.MaterialCalendarView;
 
 import java.util.Date;
 
+import info.cafenica.climatologia.db.Utilidades;
 import info.cafenica.climatologia.R;
+import info.cafenica.climatologia.db.models.Clima;
 
 public class Registro extends AppCompatActivity {
     Toolbar toolbar;
@@ -39,8 +44,11 @@ public class Registro extends AppCompatActivity {
 
     EditText txtBrillo;
     EditText txtPrecipitacion;
+    EditText txtObservacion;
     MaterialCalendarView calendarView;
+
     Typeface roboto;
+    ProgressDialog pgdialog;
 
 
     @Override
@@ -87,7 +95,9 @@ public class Registro extends AppCompatActivity {
         txtHumedadMax =(EditText) findViewById(R.id.text_hum_max);txtHumedadMax.setTypeface(roboto);
         txtHumedadMed =(EditText) findViewById(R.id.text_hum_med);txtHumedadMed.setTypeface(roboto);
         txtHumedadSuelo =(EditText) findViewById(R.id.text_hum_suelo);txtHumedadSuelo.setTypeface(roboto);
-
+        txtBrillo =(EditText) findViewById(R.id.text_brillo_sol);txtBrillo.setTypeface(roboto);
+        txtPrecipitacion = (EditText) findViewById(R.id.text_precipitacion);txtPrecipitacion.setTypeface(roboto);
+        txtObservacion = (EditText) findViewById(R.id.text_observacion);txtObservacion.setTypeface(roboto);
 
 
     }
@@ -105,11 +115,15 @@ public class Registro extends AppCompatActivity {
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
-        Log.d("REG", String.valueOf(android.R.id.home));
-
         switch (id){
             case R.id.ac_save:
-                Toast.makeText(this,"Guardar datos", Toast.LENGTH_SHORT).show();
+                pgdialog = new ProgressDialog(this);
+                pgdialog.setIndeterminate(true);
+                pgdialog.setMessage("Enviado datos al servidor.");
+                pgdialog.setTitle("Espere por favor...");
+                pgdialog.setCancelable(false);
+                pgdialog.show();
+                saveData();
                 return true;
             case android.R.id.home:
                 finish();
@@ -118,4 +132,47 @@ public class Registro extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
+
+    public void saveData(){
+        Clima climaEntry = new Clima(this);
+
+        try {
+            climaEntry.setTemp_actual(Double.valueOf(txtTempAct.getText().toString()));
+            climaEntry.setTemp_min(Double.valueOf(txtTempMin.getText().toString()));
+            climaEntry.setTemp_max(Double.valueOf(txtTempMax.getText().toString()));
+            climaEntry.setTemp_media(Double.valueOf(txtTempMed.getText().toString()));
+            climaEntry.setTemp_rocio(Double.valueOf(txtTempRocio.getText().toString()));
+            climaEntry.setTemp_rocio_min(Double.valueOf(txtTempRocioMin.getText().toString()));
+            climaEntry.setTemp_rocio_max(Double.valueOf(txtTempRocioMax.getText().toString()));
+            climaEntry.setTemp_suelo(Double.valueOf(txtTempSuelo.getText().toString()));
+
+            climaEntry.setHum_actual(Double.valueOf(txtHumedad.getText().toString()));
+            climaEntry.setHum_min(Double.valueOf(txtHumedadMin.getText().toString()));
+            climaEntry.setHum_max(Double.valueOf(txtHumedadMax.getText().toString()));
+            climaEntry.setHum_media(Double.valueOf(txtHumedadMed.getText().toString()));
+            climaEntry.setHum_suelo(Double.valueOf(txtHumedadSuelo.getText().toString()));
+
+            climaEntry.setPrecipitacion(Double.valueOf(txtPrecipitacion.getText().toString()));
+            climaEntry.setBrillo_solar(Double.valueOf(txtBrillo.getText().toString()));
+            CalendarDay calendarDay = calendarView.getSelectedDate();
+
+            climaEntry.setFecha_productor(Utilidades.dateToInt(calendarDay.getDate()));
+            climaEntry.setFecha_sistema(Utilidades.dateToInt(new Date()));
+            climaEntry.setUsuario(1);
+            climaEntry.insert();
+            pgdialog.dismiss();
+
+            Intent returnIntent = new Intent();
+            returnIntent.putExtra("entry", climaEntry);
+            setResult(RESULT_OK, returnIntent);
+            finish();
+
+        }catch (Exception e) {
+            pgdialog.dismiss();
+            //Toast.makeText(this, "Ah ocurrido un error... verifique todos los valores", Toast.LENGTH_SHORT).show();
+            Log.d("REGISTRO", e.getMessage());
+            Toast.makeText(this, e.getMessage(), Toast.LENGTH_LONG).show();
+        }
+    }
+
 }
