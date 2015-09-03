@@ -2,9 +2,13 @@ package info.cafenica.climatologia.db.adapters;
 
 import android.graphics.Color;
 import android.graphics.Typeface;
+import android.support.v4.view.ViewCompat;
+import android.support.v4.view.ViewPropertyAnimatorListener;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
+import android.view.ContextMenu;
 import android.view.LayoutInflater;
+import android.view.Menu;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -22,15 +26,17 @@ import java.util.TimeZone;
 import info.cafenica.climatologia.R;
 import info.cafenica.climatologia.db.Utilidades;
 import info.cafenica.climatologia.db.models.Clima;
+import jp.wasabeef.recyclerview.animators.holder.AnimateViewHolder;
 
 /**
  * Created by Eder Xavier Rojas on 27/08/2015.
  */
 public class ClimaAdapter extends RecyclerView.Adapter<ClimaAdapter.ViewHolder> {
     int view;
+    int position;
     ArrayList<Clima> variablesClima ;
 
-    public static class ViewHolder extends RecyclerView.ViewHolder {
+    public static class ViewHolder extends RecyclerView.ViewHolder implements View.OnCreateContextMenuListener {
         // each data item is just a string in this case
         TextView txtTempAct;
         TextView txtBrillo;
@@ -54,7 +60,14 @@ public class ClimaAdapter extends RecyclerView.Adapter<ClimaAdapter.ViewHolder> 
             txtBrillo.setTypeface(roboto); txtFecha.setTypeface(roboto);
             txtTempAct.setTypeface(roboto) ;txtHumedad.setTypeface(roboto);
             txtPrecipitacion.setTypeface(roboto);
+            viewLayout.setOnCreateContextMenuListener(this);
+        }
 
+        @Override
+        public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
+            menu.add(Menu.NONE,v.getId(),Menu.NONE,"Editar");
+            menu.setHeaderTitle("Opciones");
+            menu.setHeaderIcon(R.drawable.edit_property_32);
         }
     }
 
@@ -109,10 +122,13 @@ public class ClimaAdapter extends RecyclerView.Adapter<ClimaAdapter.ViewHolder> 
             return 0;
         }
     }
+    public void setPosition(int position){
+        this.position = position;
+    }
 
     public void addItem(Clima entry){
         variablesClima.add(0,entry);
-        this.notifyItemInserted(0);
+        notifyItemInserted(0);
         Log.d("REGISTRO", "En add item de adaptaer");
     }
 

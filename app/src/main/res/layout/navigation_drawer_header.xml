@@ -45,7 +45,8 @@
             android:layout_gravity="center"
             android:gravity="start"
             android:text="Usuario num1"
-            android:textAppearance="@style/TextAppearance.AppCompat.Title" />
+            android:textAppearance="@style/TextAppearance.AppCompat.Title"
+            android:id="@+id/drawer_user" />
 
 
 

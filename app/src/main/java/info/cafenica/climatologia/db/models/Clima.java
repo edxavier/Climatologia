@@ -94,7 +94,7 @@ public class Clima implements Parcelable {
                 "temp_rocio_max", "temp_suelo", "hum_act", "hum_min", "hum_max", "hum_suelo", "hum_media", "brillo", "precipitacion",
                 "observacion", "fecha_prod", "fecha_sist", "usuario"};
         //Cursor cursor = info.cafenica.climatologia.db.query(table, columns, selection, selectionArgs, groupBy, having, orderBy)
-        Cursor cursor = db.query("clima", cols,null, null, null, null, null);
+        Cursor cursor = db.query("clima", cols,null, null, null, null, "_id DESC");
         Clima clima = null;
         ArrayList<Clima> entradas = new ArrayList<>();
         while(cursor.moveToNext())

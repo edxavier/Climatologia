@@ -60,13 +60,15 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
 
         }
         drawerLayout = (DrawerLayout) findViewById(R.id.navigation_drawer_layout);
+        TextView drawerUser = (TextView) findViewById(R.id.drawer_user);
+        drawerUser.setText(usuario.getUsuario());
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.navigation_view);
         if (navigationView != null) {
             setupNavigationDrawerContent(navigationView);
         }
         collapsingToolbarLayout = (CollapsingToolbarLayout) findViewById(R.id.collap);
-        collapsingToolbarLayout.setTitle("Climatologia");
+        collapsingToolbarLayout.setTitle(usuario.getUsuario());
 
         FloatingActionButton fabBtn = (FloatingActionButton) findViewById(R.id.fabBtn_nuevo);
         fabBtn.setOnClickListener(this);

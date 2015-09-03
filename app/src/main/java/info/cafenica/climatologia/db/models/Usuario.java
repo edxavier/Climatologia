@@ -63,6 +63,7 @@ public class Usuario {
             usuario.setUsuario(cursor.getString(cursor.getColumnIndex("user")));
             usuario.setPassword(cursor.getString(cursor.getColumnIndex("password")));
         }
+        this.usuario = usuario.getUsuario();
         return usuario;
     }
 

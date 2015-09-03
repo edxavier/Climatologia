@@ -29,6 +29,7 @@ public class FragmentClima extends Fragment {
     private RecyclerView mRecyclerView;
     private RecyclerView.LayoutManager mLayoutManager;
     AlphaInAnimationAdapter alphaAdapter;
+    ScaleInAnimationAdapter scaleInAnimationAdapter;
     ClimaAdapter adapter = null;
 
     @Override
@@ -45,8 +46,8 @@ public class FragmentClima extends Fragment {
         mLayoutManager = new LinearLayoutManager(getActivity());
         mLayoutManager.scrollToPosition(0);
         mRecyclerView.setLayoutManager(mLayoutManager);
-        mRecyclerView.setItemAnimator(new SlideInLeftAnimator());
-        mRecyclerView.getItemAnimator().setAddDuration(1000);
+        mRecyclerView.setItemAnimator(new FlipInTopXAnimator());
+        mRecyclerView.getItemAnimator().setAddDuration(800);
 
         Clima clima = new Clima(getActivity());
         ArrayList<Clima> variablesClima = clima.getClimaEntries();
@@ -54,14 +55,15 @@ public class FragmentClima extends Fragment {
         adapter = new ClimaAdapter(R.layout.row_clima, variablesClima);
         alphaAdapter = new AlphaInAnimationAdapter(adapter);
         alphaAdapter.setDuration(1000);
-        mRecyclerView.setAdapter(new ScaleInAnimationAdapter(alphaAdapter));
+        scaleInAnimationAdapter = new ScaleInAnimationAdapter(alphaAdapter);
+        mRecyclerView.setAdapter(scaleInAnimationAdapter );
+        registerForContextMenu(mRecyclerView);
 //        mRecyclerView.setAdapter(adapter);
     }
 
     public void addClimaEntry(Clima entry){
         adapter.addItem(entry);
-        alphaAdapter = new AlphaInAnimationAdapter(adapter);
-        alphaAdapter.setDuration(1000);
-        mRecyclerView.setAdapter(new ScaleInAnimationAdapter(alphaAdapter));
+        scaleInAnimationAdapter.notifyItemInserted(0);
+        mRecyclerView.scrollToPosition(0);
     }
 }
