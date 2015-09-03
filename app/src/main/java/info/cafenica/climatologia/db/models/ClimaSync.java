@@ -1,25 +1,11 @@
 package info.cafenica.climatologia.db.models;
 
-import android.content.ContentValues;
-import android.content.Context;
-import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
-import android.os.Parcel;
-import android.os.Parcelable;
-
 import com.orm.SugarRecord;
 
-import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.Date;
-
-import info.cafenica.climatologia.db.DbOpenHelper;
-
 /**
- * Created by Eder Xavier Rojas on 26/08/2015.
+ * Created by Eder Xavier Rojas on 03/09/2015.
  */
-public class Clima extends SugarRecord<Clima> implements Parcelable {
-
+public class ClimaSync extends SugarRecord<ClimaSync> {
     //Campos de tabla
     double temp_actual = 0;
     double temp_min = 0;
@@ -44,7 +30,7 @@ public class Clima extends SugarRecord<Clima> implements Parcelable {
     int fecha_sistema = 0;
     int usuario = 0;
 
-    public Clima() {
+    public ClimaSync() {
     }
 
     public double getTemp_actual() {
@@ -175,13 +161,6 @@ public class Clima extends SugarRecord<Clima> implements Parcelable {
         this.observacion = observacion;
     }
 
-    public int getUsuario() {
-        return usuario;
-    }
-
-    public void setUsuario(int usuario) {
-        this.usuario = usuario;
-    }
     public int getFecha_productor() {
         return fecha_productor;
     }
@@ -198,77 +177,11 @@ public class Clima extends SugarRecord<Clima> implements Parcelable {
         this.fecha_sistema = fecha_sistema;
     }
 
-
-    public Clima(Parcel in) {
-        readFromParcel(in);
+    public int getUsuario() {
+        return usuario;
     }
 
-    @Override
-    public int describeContents() {
-        return 0;
+    public void setUsuario(int usuario) {
+        this.usuario = usuario;
     }
-
-    @Override
-    public void writeToParcel(Parcel dest, int flags) {
-        dest.writeDouble(temp_actual);
-        dest.writeDouble(temp_min);
-        dest.writeDouble(temp_max);
-        dest.writeDouble(temp_media);
-        dest.writeDouble(temp_rocio);
-        dest.writeDouble(temp_rocio_min);
-        dest.writeDouble(temp_rocio_max);
-        dest.writeDouble(temp_suelo);
-        dest.writeDouble(hum_actual);
-        dest.writeDouble(hum_min);
-        dest.writeDouble(hum_max);
-        dest.writeDouble(hum_media);
-        dest.writeDouble(hum_suelo);
-        dest.writeDouble(brillo_solar);
-        dest.writeDouble(precipitacion);
-        dest.writeString(observacion);
-        dest.writeInt(fecha_productor);
-        dest.writeInt(fecha_sistema);
-        dest.writeInt(usuario);
-
-    }
-    private void readFromParcel(Parcel in) {
-
-        // We just need to read back each
-        // field in the order that it was
-        // written to the parcel
-        //Campos de tabla
-        temp_actual = in.readDouble();
-        temp_min = in.readDouble();
-        temp_max = in.readDouble();
-        temp_rocio = in.readDouble();
-        temp_rocio_min = in.readDouble();
-        temp_rocio_max = in.readDouble();
-        temp_suelo = in.readDouble();
-        temp_media = in.readDouble();
-
-        hum_actual = in.readDouble();
-        hum_min = in.readDouble();
-        hum_max = in.readDouble();
-        hum_suelo = in.readDouble();
-        hum_media = in.readDouble();
-
-        brillo_solar = in.readDouble();
-        precipitacion = in.readDouble();
-
-        observacion = in.readString();
-        fecha_productor = in.readInt();
-        fecha_sistema = in.readInt();
-        usuario = in.readInt();
-
-    }
-    public static final Parcelable.Creator CREATOR =
-            new Parcelable.Creator() {
-                public Clima createFromParcel(Parcel in) {
-                    return new Clima(in);
-                }
-
-                public Clima[] newArray(int size) {
-                    return new Clima[size];
-                }
-            };
 }

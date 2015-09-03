@@ -51,6 +51,13 @@
                 android:layout_marginStart="16dp"
                 android:background="@color/md_black_1000_25" />
 -->
+            <com.rey.material.widget.Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="BUTTON"
+                app:rd_enable="true"
+                app:rd_cornerRadius="5dp" />
+
 
             <include layout="@layout/celcius_fields"></include>
 

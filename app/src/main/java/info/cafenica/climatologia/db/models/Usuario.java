@@ -4,27 +4,22 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.util.Log;
+
+import com.orm.SugarRecord;
+
+import java.util.List;
 
 import info.cafenica.climatologia.db.DbOpenHelper;
 
 /**
  * Created by Eder Xavier Rojas on 25/08/2015.
  */
-public class Usuario {
+public class Usuario extends SugarRecord<Usuario>{
 
-    DbOpenHelper dbOpenHelper = null;
-    Context context = null;
-    private SQLiteDatabase db = null;
-    //Campos de tabla
+        //Campos de tabla
     String usuario;
     String password;
-
-
-    public Usuario(Context context) {
-        this.context = context;
-        if(dbOpenHelper==null)
-            dbOpenHelper = new DbOpenHelper(context);
-    }
 
     public Usuario(String usuario, String password) {
         this.usuario = usuario;
@@ -33,38 +28,19 @@ public class Usuario {
     public Usuario() {
     }
 
-    /**
-     ********* Operaciones sobre Sqlite *********
-     */
-    public long insert()
+    public static Usuario getUserCredentials()
     {
-        db = dbOpenHelper .getWritableDatabase();
-        ContentValues cv = new ContentValues();
-        cv.put("user", this.usuario);
-        cv.put("password",this.password);
-        return db.insert("usuario", null, cv);
-    }
-    public int delete()
-    {
-        db = dbOpenHelper.getWritableDatabase();
-        return db.delete("usuario",null, null);
-    }
-
-    public Usuario getUserCredentials()
-    {
-        db = dbOpenHelper.getWritableDatabase();
-        String [] cols = new  String [] {"_id", "user", "password"};
-        //Cursor cursor = info.cafenica.climatologia.db.query(table, columns, selection, selectionArgs, groupBy, having, orderBy)
-        Cursor cursor = db.query("usuario", cols,null, null, null, null, null);
-        Usuario usuario = null;
-        if(cursor.moveToFirst())
-        {
-            usuario = new Usuario();
-            usuario.setUsuario(cursor.getString(cursor.getColumnIndex("user")));
-            usuario.setPassword(cursor.getString(cursor.getColumnIndex("password")));
+        List<Usuario> usuarioList = Usuario.listAll(Usuario.class);
+        Log.d("USER", String.valueOf(usuarioList.size()));
+        if(usuarioList.size()>0) {
+            Log.d("USER", "HAY USUARIO");
+            return usuarioList.get(0);
         }
-        this.usuario = usuario.getUsuario();
-        return usuario;
+        else {
+            Log.d("USER", "NO HAY USUARIO");
+            return null;
+        }
+
     }
 
     /**

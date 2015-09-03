@@ -33,7 +33,7 @@ import jp.wasabeef.recyclerview.animators.holder.AnimateViewHolder;
  */
 public class ClimaAdapter extends RecyclerView.Adapter<ClimaAdapter.ViewHolder> {
     int view;
-    int position;
+    int position=0;
     ArrayList<Clima> variablesClima ;
 
     public static class ViewHolder extends RecyclerView.ViewHolder implements View.OnCreateContextMenuListener {
@@ -65,9 +65,12 @@ public class ClimaAdapter extends RecyclerView.Adapter<ClimaAdapter.ViewHolder> 
 
         @Override
         public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
-            menu.add(Menu.NONE,v.getId(),Menu.NONE,"Editar");
             menu.setHeaderTitle("Opciones");
-            menu.setHeaderIcon(R.drawable.edit_property_32);
+            menu.add(Menu.NONE, 1, Menu.NONE, "Editar datos de temperatura");
+            menu.add(Menu.NONE, 2, Menu.NONE, "Editar datos de rocio.");
+            menu.add(Menu.NONE, 3, Menu.NONE, "Editar datos de humedad");
+            menu.add(Menu.NONE, 4, Menu.NONE, "Editar brillo y precipitacion");
+            menu.add(Menu.NONE, 5, Menu.NONE, "Editar Fecha");
         }
     }
 
@@ -85,7 +88,7 @@ public class ClimaAdapter extends RecyclerView.Adapter<ClimaAdapter.ViewHolder> 
     }
 
     @Override
-    public void onBindViewHolder(ClimaAdapter.ViewHolder holder, int position) {
+    public void onBindViewHolder(final ClimaAdapter.ViewHolder holder, int position) {
         Clima entrada = variablesClima.get(position);
         holder.txtTempAct.setText(String.valueOf(entrada.getTemp_actual()));
         holder.txtPrecipitacion.setText(String.valueOf(entrada.getPrecipitacion()));
@@ -111,6 +114,13 @@ public class ClimaAdapter extends RecyclerView.Adapter<ClimaAdapter.ViewHolder> 
                 .buildRoundRect(diaDelMes, color1, 10);
 
         holder.image.setImageDrawable(drawable);
+        holder.itemView.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                setPosition(holder.getAdapterPosition());
+                return false;
+            }
+        });
 
     }
 
@@ -126,11 +136,22 @@ public class ClimaAdapter extends RecyclerView.Adapter<ClimaAdapter.ViewHolder> 
         this.position = position;
     }
 
-    public void addItem(Clima entry){
-        variablesClima.add(0,entry);
-        notifyItemInserted(0);
-        Log.d("REGISTRO", "En add item de adaptaer");
+    public int getPosition(){
+        return this.position;
     }
+
+    public void addItem(Clima entry){
+        variablesClima.add(0, entry);
+        notifyItemInserted(0);
+    }
+
+    public Clima getEntry(){
+        return variablesClima.get(this.position);
+    }
+    public void updateEntry(Clima entry){
+        variablesClima.set(this.position, entry);
+    }
+
 
 
 }

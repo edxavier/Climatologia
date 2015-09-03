@@ -1,6 +1,7 @@
 package info.cafenica.climatologia.activities;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.FloatingActionButton;
@@ -22,8 +23,16 @@ import android.widget.TextView;
 import android.widget.Toast;
 import android.support.v4.app.Fragment;
 
+import com.rey.material.app.Dialog;
+import java.util.Calendar;
+import java.util.List;
+
+import com.rey.material.app.DatePickerDialog;
+
+import cn.pedant.SweetAlert.SweetAlertDialog;
 import info.cafenica.climatologia.R;
 import info.cafenica.climatologia.db.models.Clima;
+import info.cafenica.climatologia.db.models.ClimaSync;
 import info.cafenica.climatologia.db.models.Usuario;
 import info.cafenica.climatologia.fragments.FragmentClima;
 
@@ -44,11 +53,17 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
-        usuario = new Usuario(this);
-        if(usuario.getUserCredentials()==null) {
+        usuario = Usuario.getUserCredentials();
+        if(usuario==null) {
             Intent intent = new Intent(HomeActivity.this, LoginActivity.class);
             startActivity(intent);
             finish();
+        }else{
+            drawerLayout = (DrawerLayout) findViewById(R.id.navigation_drawer_layout);
+            collapsingToolbarLayout = (CollapsingToolbarLayout) findViewById(R.id.collap);
+            collapsingToolbarLayout.setTitle(usuario.getUsuario());
+            TextView drawerUser = (TextView) findViewById(R.id.drawer_user);
+            drawerUser.setText(usuario.getUsuario());
         }
         toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -56,27 +71,18 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
         try {
             actionBar.setHomeAsUpIndicator(R.drawable.ic_menu);
             actionBar.setDisplayHomeAsUpEnabled(true);
-        }catch (Exception e){
-
-        }
-        drawerLayout = (DrawerLayout) findViewById(R.id.navigation_drawer_layout);
-        TextView drawerUser = (TextView) findViewById(R.id.drawer_user);
-        drawerUser.setText(usuario.getUsuario());
+        }catch (Exception e){ }
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.navigation_view);
         if (navigationView != null) {
             setupNavigationDrawerContent(navigationView);
         }
-        collapsingToolbarLayout = (CollapsingToolbarLayout) findViewById(R.id.collap);
-        collapsingToolbarLayout.setTitle(usuario.getUsuario());
-
         FloatingActionButton fabBtn = (FloatingActionButton) findViewById(R.id.fabBtn_nuevo);
         fabBtn.setOnClickListener(this);
 
         fragmentManager = getSupportFragmentManager();
         frgClima = new FragmentClima();
         fragmentManager.beginTransaction().replace(R.id.fragmentContainer, frgClima).commit();
-
         //setupNavigationDrawerContent(navigationView);
 
     }
@@ -159,6 +165,22 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
                                 collapsingToolbarLayout.setTitle(menuItem.getTitle());
                                 //Toast.makeText(MainActivity.this, "Launching " + menuItem.getTitle().toString(), Toast.LENGTH_SHORT).show();
                                 drawerLayout.closeDrawer(GravityCompat.START);
+                                SweetAlertDialog pDialog = new SweetAlertDialog(HomeActivity.this, SweetAlertDialog.WARNING_TYPE);
+                                pDialog.setTitleText("Are you sure?");
+                                pDialog.setContentText("Won't be able to recover this file!");
+                                pDialog.setConfirmText("Yes,delete it!");
+                                pDialog.setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener() {
+                                    @Override
+                                    public void onClick(SweetAlertDialog sDialog) {
+                                        sDialog
+                                                .setTitleText("Deleted!")
+                                                .setContentText("Your imaginary file has been deleted!")
+                                                .setConfirmText("OK")
+                                                .setConfirmClickListener(null)
+                                                .changeAlertType(SweetAlertDialog.SUCCESS_TYPE);
+                                    }
+                                });
+                                pDialog.show();
                                 //Intent intent = new Intent(MainActivity.this, SettingsActivity.class);
                                 //startActivity(intent);
                                 return true;
@@ -166,6 +188,7 @@ public class HomeActivity extends AppCompatActivity implements View.OnClickListe
                                 menuItem.setChecked(true);
                                 //Toast.makeText(MainActivity.this, menuItem.getTitle().toString(), Toast.LENGTH_SHORT).show();
                                 drawerLayout.closeDrawer(GravityCompat.START);
+
                                 return true;
                         }
 

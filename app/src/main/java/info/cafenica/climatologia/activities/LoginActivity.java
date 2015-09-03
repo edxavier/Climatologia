@@ -14,8 +14,7 @@ import android.widget.Toast;
 import android.support.design.widget.TextInputLayout;
 
 
-
-
+import cn.pedant.SweetAlert.SweetAlertDialog;
 import info.cafenica.climatologia.R;
 import info.cafenica.climatologia.db.models.Usuario;
 
@@ -23,7 +22,7 @@ import info.cafenica.climatologia.db.models.Usuario;
 public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
 
     private static final String TAG = "LoginActivity";
-    ProgressDialog pgdialog;
+    SweetAlertDialog pgdialog;
     TextInputLayout user_til;
     TextInputLayout passwd_til;
     Usuario usuario = null;
@@ -43,7 +42,7 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
         passwd_til = (TextInputLayout) findViewById(R.id.password_text_input_layout);
         user_til.setErrorEnabled(true);
         passwd_til.setErrorEnabled(true);
-        usuario = new Usuario(this);
+        usuario = new Usuario();
 
     }
 
@@ -76,21 +75,20 @@ public class LoginActivity extends AppCompatActivity implements View.OnClickList
             //Toast.makeText(this, "No valido", Toast.LENGTH_LONG).show();
             return;
         }
-        pgdialog = new ProgressDialog(LoginActivity.this);
-        pgdialog.setIndeterminate(true);
-        pgdialog.setMessage("Se estan verificando tus credenciales en el servidor.\nEsto podria tomar unos segundos.");
-        pgdialog.setTitle("Autenticando...");
+        pgdialog = new SweetAlertDialog(this, SweetAlertDialog.PROGRESS_TYPE);
+        //pgdialog.setIndeterminate(true);
+        //pgdialog.setMessage("Se estan verificando tus credenciales en el servidor.\nEsto podria tomar unos segundos.");
+        pgdialog.setTitle("Autenticando con el servidor...");
         pgdialog.setCancelable(false);
+        pgdialog.setContentText("Se estan verificando tus credenciales en el servidor.\\nEsto podria tomar unos segundos.");
         pgdialog.show();
 
         //Falta agregar la logica de conexion con el API REST
-        Log.d(TAG, String.valueOf(user.equals("edx@yahoo.com")));
-        Log.d(TAG, String.valueOf(password.equals("1234")));
 
         if(user.equals("edx@yahoo.com")  && password.equals("1234")) {
             usuario.setUsuario(user);
             usuario.setPassword(password);
-            usuario.insert();
+            usuario.save();
             pgdialog.dismiss();
             Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
             startActivity(intent);

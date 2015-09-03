@@ -24,6 +24,7 @@ import java.util.Date;
 import info.cafenica.climatologia.db.Utilidades;
 import info.cafenica.climatologia.R;
 import info.cafenica.climatologia.db.models.Clima;
+import info.cafenica.climatologia.db.models.ClimaSync;
 
 public class Registro extends AppCompatActivity {
     Toolbar toolbar;
@@ -134,7 +135,9 @@ public class Registro extends AppCompatActivity {
     }
 
     public void saveData(){
-        Clima climaEntry = new Clima(this);
+        Clima climaEntry = new Clima();
+        ClimaSync climaSync = new ClimaSync();
+        climaSync.save();
 
         try {
             climaEntry.setTemp_actual(Double.valueOf(txtTempAct.getText().toString()));
@@ -154,12 +157,14 @@ public class Registro extends AppCompatActivity {
 
             climaEntry.setPrecipitacion(Double.valueOf(txtPrecipitacion.getText().toString()));
             climaEntry.setBrillo_solar(Double.valueOf(txtBrillo.getText().toString()));
+            climaEntry.setObservacion(txtObservacion.getText().toString());
             CalendarDay calendarDay = calendarView.getSelectedDate();
 
             climaEntry.setFecha_productor(Utilidades.dateToInt(calendarDay.getDate()));
             climaEntry.setFecha_sistema(Utilidades.dateToInt(new Date()));
             climaEntry.setUsuario(1);
-            climaEntry.insert();
+            climaEntry.save();
+
             pgdialog.dismiss();
 
             Intent returnIntent = new Intent();
